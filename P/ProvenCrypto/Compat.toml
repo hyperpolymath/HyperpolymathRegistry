@@ -1,7 +1,7 @@
 ["0.1.2"]
 AcceleratorGate = "0.1"
 Dates = "1"
-JSON = "0.21, 1"
+ = []
 KernelAbstractions = "0.9"
-SHA = "0.7, 1"
+ = []
 julia = "1"

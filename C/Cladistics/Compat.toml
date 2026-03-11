@@ -1,6 +1,6 @@
 ["0.1.0"]
 AcceleratorGate = "0.1"
-Clustering = "0.14, 0.15"
+ = []
 DataFrames = "1"
 Distances = "0.10"
 Graphs = "1"
