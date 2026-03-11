@@ -1,4 +1,7 @@
 ["0.3.1"]
 AcceleratorGate = "59f742c7-270d-4a76-95d4-a853ae16cc71"
 DBInterface = "a10d1c49-ce27-4219-8d33-6db1a4562965"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 SQLite = "0aa819cd-b072-5ff4-a722-6bc24af294d9"
+UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"

@@ -2,3 +2,4 @@
 AcceleratorGate = "59f742c7-270d-4a76-95d4-a853ae16cc71"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"

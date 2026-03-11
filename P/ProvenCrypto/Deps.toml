@@ -1,4 +1,10 @@
 ["0.1.2"]
 AcceleratorGate = "59f742c7-270d-4a76-95d4-a853ae16cc71"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 KernelAbstractions = "63c18a36-062a-441e-b654-da1e3ab1ce7c"
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
