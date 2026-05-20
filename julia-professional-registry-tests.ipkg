@@ -1,0 +1,16 @@
+-- SPDX-License-Identifier: PMPL-1.0-or-later
+-- julia-professional-registry Idris2 test suite. Estate port 4/11.
+
+package julia-professional-registry-tests
+
+sourcedir = "tests/idris2"
+
+depends = base
+
+modules = Test.Spec
+        , ValidateTest
+        , Main
+
+main = Main
+
+executable = "julia-professional-registry-tests"
