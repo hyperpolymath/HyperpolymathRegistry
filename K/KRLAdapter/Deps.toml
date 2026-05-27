@@ -1,0 +1,8 @@
+["0.1.0"]
+AcceleratorGate = "59f742c7-270d-4a76-95d4-a853ae16cc71"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+KnotTheory = "215268c9-7579-426e-8b7c-a3dc27acd339"
+Skein = "e8a1f3d0-7c42-4e9a-b5d1-3a7f8c2e1d0b"
+UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"

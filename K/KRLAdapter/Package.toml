@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
+name = "KRLAdapter"
+uuid = "28b5845d-d150-4ffa-a60e-3b762afb26c8"
+repo = "https://github.com/hyperpolymath/KRLAdapter.jl.git"
