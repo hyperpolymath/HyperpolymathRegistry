@@ -20,15 +20,17 @@ this project aims to follow [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `CHANGELOG.md`, `ROADMAP.adoc`, `MAINTAINERS.adoc`, `GOVERNANCE.adoc` — bring repo to estate documentation convention.
-- `.github/ISSUE_TEMPLATE/{bug_report,feature_request,custom}.md`, `.github/pull_request_template.md`, `.github/CODEOWNERS`, `.github/FUNDING.yml`, `.github/copilot-instructions.md` — estate-standard contributor onboarding fleet.
+- Registry: `EchoTypes v0.1.0` (PR #16) and `v0.2.0` (PR #20); `KRLAdapter v0.1.0` (PR #16); `ViperPkg v0.1.0` (PR #18) — total 37 registered packages.
+- `CHANGELOG.md`, `ROADMAP.adoc`, `MAINTAINERS.adoc`, `GOVERNANCE.adoc` — bring repo to estate documentation convention (PR #19).
+- `.github/ISSUE_TEMPLATE/{bug_report,feature_request,package_registration}.md`, `.github/pull_request_template.md`, `.github/CODEOWNERS`, `.github/FUNDING.yml`, `.github/copilot-instructions.md` — estate-standard contributor onboarding fleet (PR #19).
 - `.github/workflows/{scorecard,mirror,secret-scanner,codeql}.yml` — wire the four missing standards reusables (PR #17).
-- Wiki: structured pages mirroring repo documentation (Home, Registry-Usage, Packages, Architecture, Testing, Governance, Roadmap).
+- Wiki: 9 structured pages mirroring repo documentation (Home, Registry-Usage, Packages, Registering-a-Package, Architecture, Testing, Governance, Roadmap, Security) + `_Sidebar` (PR #19).
 
 ### Changed
 
 - `.github/workflows/governance.yml` — SHA-pin the standards governance reusable (was floating `@main`) (PR #17).
-- Consolidate `CONTRIBUTING.md` and `CONTRIBUTING.adoc` into a single canonical Markdown file.
+- `.github/workflows/scorecard.yml` — job-level `security-events: write` + `id-token: write` permissions to match the reusable's canonical caller block; fixes `startup_failure` regression introduced in PR #17 (PR #19).
+- Consolidate `CONTRIBUTING.md` and `CONTRIBUTING.adoc` into a single canonical Markdown file (PR #19).
 
 ### Removed
 
