@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
+name = "EchoTypes"
+uuid = "a8ca608b-856a-4215-8c3d-f9ffd1705524"
+repo = "https://github.com/hyperpolymath/EchoTypes.jl.git"
