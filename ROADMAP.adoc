@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+
+= julia-professional-registry: Roadmap
+Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+:toc: left
+:toclevels: 3
+:sectnums:
+:icons: font
+
+== Vision
+
+A curated, formally-grounded Julia package registry that aggregates the hyperpolymath ecosystem's Julia packages behind a single `Pkg.Registry.add` entry. The registry is the canonical index; the packages themselves live in their own repositories.
+
+The registry exists to make the hyperpolymath Julia surface installable without ad-hoc URL juggling, while keeping each package independently versioned and reviewable.
+
+== Current State (v1.0.0)
+
+* 34 packages registered (see link:README.adoc[README] for the full table).
+* CRG Grade C test coverage achieved 2026-04-04 (see link:TEST-NEEDS.md[TEST-NEEDS]).
+* `.machine_readable/` dual-track scaffolding complete with canonical `6a2/` layout.
+* OpenSSF Scorecard + CodeQL + Hypatia scan workflows wired via shared reusables.
+* Zero open code-scanning alerts post-PR #17 (modulo the in-flight `feat/register-echotypes-krladapter` branch policy artefact).
+
+== Near Term (3–6 months)
+
+=== Registry growth
+
+* Register the remaining hyperpolymath Julia packages as they reach a published 0.1.0 tag.
+* Backfill semver compat ranges (`compat` blocks in each package's `Project.toml`) as upstream packages stabilise.
+
+=== Tooling
+
+* Adopt the standards link:https://github.com/hyperpolymath/standards/blob/main/.github/workflows/changelog-reusable.yml[`changelog-reusable.yml`] workflow so `CHANGELOG.md` is generated from conventional commits.
+* Move the existing Idris2 test harness from ad-hoc to a reusable contract-testing pattern that consumes each package's `Project.toml` and validates Registry.toml correctness automatically.
+
+=== Documentation
+
+* Wiki pages for: registry usage, package authorship, governance, release process.
+* Inline cross-links between README package table, individual package READMEs, and Registry.toml `repo` URLs.
+
+== Medium Term (6–12 months)
+
+=== Mirror surface
+
+* Activate the mirror workflow to push to GitLab, Codeberg, Sourcehut, Disroot, Gitea, and Radicle (already wired via standards `mirror-reusable.yml`; toggled via per-repo `vars.<FORGE>_MIRROR_ENABLED` Actions variables).
+
+=== Quality gates
+
+* Verify every registered package carries: SPDX header, REUSE-compliant `LICENSES/`, OpenSSF Scorecard >= 7, no banned-language files.
+* Add a registry-level CI job that fails Registry.toml additions whose upstream repo fails the above checks.
+
+=== Federation
+
+* Publish the registry as a JuliaHub-compatible mirror so packages can be discovered via standard Julia tooling without bypassing the registry.
+
+== Long Term (12+ months)
+
+=== Verified registry
+
+* Each package entry carries an attestation of its build provenance (SLSA Level 3+).
+* Registry.toml entries are append-only with cryptographic signing of the registry head, allowing offline verification of "this version was in the registry at this time."
+
+=== Cross-language indexing
+
+* The hyperpolymath ecosystem spans Idris2, Rust, OCaml, Coq, Lean, Agda, Haskell, Zig, Elixir, and Julia. A future iteration aggregates the per-language registries behind a single discovery surface (probably driven by the `.machine_readable/` ECOSYSTEM.a2ml graph).
+
+== Non-goals
+
+* This registry is *not* a fork of the general-purpose JuliaRegistries/General. Packages should be registered in General when they are mature and externally relevant; this registry is the proving ground.
+* The registry does not host package source — packages live in their own repos. Registry.toml `repo` URLs are the source of truth.
+
+== Tracking
+
+Filed issues and PRs against link:https://github.com/hyperpolymath/julia-professional-registry/issues[the issue tracker] drive the work; this roadmap is the high-level narrative the issues hang off.

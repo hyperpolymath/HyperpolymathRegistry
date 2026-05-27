@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+= Maintainers
+:toc: preamble
+
+This document lists the maintainers of `julia-professional-registry` and their responsibilities.
+
+== Current Maintainers
+
+[cols="2,3,2",options="header"]
+|===
+| Name | Role | Contact
+
+| Jonathan D.A. Jewell
+| Lead Maintainer
+| https://github.com/hyperpolymath[@hyperpolymath]
+|===
+
+== Responsibilities
+
+Maintainers are responsible for:
+
+* Reviewing and merging pull requests
+* Triaging issues and feature requests
+* Ensuring registered packages meet the registry's quality bar (SPDX, REUSE, OpenSSF baseline)
+* Coordinating package registrations with upstream package maintainers
+* Managing registry releases and the `Registry.toml` history
+* Responding to security reports (see link:SECURITY.md[SECURITY.md])
+
+== Contact
+
+For maintainer-only matters, contact the lead maintainer directly. For general project questions, open an issue.
+
+== Becoming a Maintainer
+
+The project follows the BDFL governance model documented in link:GOVERNANCE.adoc[GOVERNANCE.adoc]. New maintainers are invited by the lead maintainer based on sustained contributions to:
+
+* Registry quality (registrations, version bumps, compat ranges)
+* Tooling (workflows, validators, CI)
+* Documentation (wiki, READMEs, architectural notes)
+
+Once the core team exceeds three active maintainers, link:GOVERNANCE.adoc[the governance model] transitions to consensus-based per the documented transition clause.

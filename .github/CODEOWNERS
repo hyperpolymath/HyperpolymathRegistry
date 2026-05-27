@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+#
+# CODEOWNERS — julia-professional-registry
+
+# Default owner for all files
+*                              @hyperpolymath
+
+# Registry index — the canonical surface
+/Registry.toml                 @hyperpolymath
+
+# Workflows + dependency policy
+/.github/                      @hyperpolymath
+
+# Machine-readable metadata
+/.machine_readable/            @hyperpolymath
+
+# Security-sensitive
+/SECURITY.md                   @hyperpolymath
+/.well-known/                  @hyperpolymath
+
+# Governance docs
+/GOVERNANCE.adoc               @hyperpolymath
+/MAINTAINERS.adoc              @hyperpolymath
+/CODE_OF_CONDUCT.md            @hyperpolymath
