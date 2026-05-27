@@ -14,9 +14,18 @@ We welcome contributions in many forms:
 
 ## Getting Started
 
-1. **Read the AI Manifest:** Start with `0-AI-MANIFEST.a2ml` (if present) to understand the repository structure.
-2. **Environment:** Use `nix develop` or `direnv allow` to set up your tools.
+1. **Read the AI Manifest:** Start with `0-AI-MANIFEST.a2ml` to understand the repository structure.
+2. **Environment:** Use `guix shell -D -f guix.scm` (or `direnv allow` if the `.envrc` is honoured) to set up your tools. Guix is the canonical packager per [standards#101](https://github.com/hyperpolymath/standards/issues/101); the prior `nix develop` fallback was retired estate-wide.
 3. **Task Runner:** Use `just` to see available commands (`just --list`).
+
+## Registering a Package
+
+This repo is a Julia package registry. To register a new package or a new version:
+
+1. Confirm the upstream package meets the registry's quality bar (see [GOVERNANCE.adoc](GOVERNANCE.adoc) — SPDX headers, REUSE-compliant `LICENSES/`, OpenSSF Scorecard baseline, no banned-language files).
+2. Add or update the relevant per-letter directory (e.g. a new package `Foo` lives under `F/Foo/`). Each version directory contains the standard Julia registry files: `Package.toml`, `Versions.toml`, `Deps.toml`, `Compat.toml`, `WeakCompat.toml`.
+3. Update the top-level `Registry.toml` index.
+4. Open a PR titled `feat(registry): register <Package> v<X.Y.Z>` (or `feat(registry): add <Package> v<X.Y.Z>`).
 
 ## Development Workflow
 
