@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: MPL-2.0
+name = "ViperPkg"
+uuid = "d7e4f8a0-5c3b-4d9e-8f2a-1b3c4d5e6f7a"
+repo = "https://github.com/hyperpolymath/julia-the-viper.git"
+subdir = "viper-pkg"
