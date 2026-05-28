@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- julia-professional-registry Idris2 test suite. Estate port 4/11.
 
 package julia-professional-registry-tests
