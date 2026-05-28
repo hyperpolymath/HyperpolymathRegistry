@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Trustfile (A2ML Canonical)
 # Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath)
 
@@ -16,7 +16,7 @@ Maximal trust by default — LLM may read, build, test, lint, format.
 
 ### license-content
 - description: LICENSE contains expected SPDX identifier
-- run: grep -q 'SPDX\|License\|MIT\|Apache\|PMPL\|MPL' LICENSE
+- run: grep -q 'SPDX\|License\|MIT\|Apache\|MPL' LICENSE
 - severity: critical
 
 ### no-secrets-committed

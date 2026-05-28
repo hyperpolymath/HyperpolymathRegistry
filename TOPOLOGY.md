@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
 <!-- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk> -->
 
 # TOPOLOGY.md — HyperpolymathRegistry
@@ -18,7 +18,7 @@ HyperpolymathRegistry/
 │   └── ... (packages starting with B)
 ├── ... (alphabetical package directories)
 ├── README.adoc                # Registry documentation
-└── LICENSE                    # PMPL-1.0-or-later
+└── LICENSE                    # MPL-2.0
 ```
 
 ## Data Flow
@@ -30,6 +30,6 @@ HyperpolymathRegistry/
 ## Key Invariants
 
 - Julia package registry format with standard Registries.toml
-- All registered packages use PMPL-1.0-or-later or compatible licenses
+- All registered packages use MPL-2.0 or compatible licenses
 - Compatible with standard Julia package manager (Pkg)
 - Version resolution follows semantic versioning
