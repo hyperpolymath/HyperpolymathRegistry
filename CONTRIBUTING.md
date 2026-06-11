@@ -1,4 +1,5 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
+<!-- Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk> -->
 # Contributing
 
 Thank you for your interest in contributing! We follow a "Dual-Track" architecture where human-readable documentation lives in the root and machine-readable policies live in `.machine_readable/`.
