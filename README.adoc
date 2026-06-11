@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MPL-2.0
-// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // SPDX-FileCopyrightText: 2025-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 
 = julia-professional-registry
@@ -7,7 +6,7 @@ Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 :toc:
 
 image:https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=opensourcesecurity[OpenSSF Best Practices,link="https://www.bestpractices.dev/en/projects/new?repo_url=https://github.com/hyperpolymath/julia-professional-registry"]
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[License: MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+image:https://img.shields.io/badge/License-MPL--2.0-blue.svg[License: MPL-2.0,link="https://www.mozilla.org/en-US/MPL/2.0/"]
 image:https://api.thegreenwebfoundation.org/greencheckimage/github.com[Green Web,link="https://www.thegreenwebfoundation.org/green-web-check/?url=github.com"]
 
 == Overview
@@ -47,6 +46,7 @@ pkg> add SMTLib
 | Cladistics | 0.1.0 | Phylogenetic cladistic analysis
 | Cliodynamics | 0.1.0 | Mathematical modelling of historical dynamics
 | Cliometrics | 0.1.0 | Quantitative historical economics
+| EchoTypes | 0.2.0 | Echo-types runtime — companion to the nextgen-languages Echo type system
 | Exnovation | 0.1.0 | Technology phase-out analysis
 | FirmwareAudit | 0.1.0 | Firmware integrity auditing
 | HackenbushGames | 0.1.0 | Combinatorial game theory (Hackenbush)
@@ -56,6 +56,7 @@ pkg> add SMTLib
 | JuliaForChildren | 0.1.0 | Educational Julia for young learners
 | JuliaPackageSpitter | 0.1.0 | Julia package quality auditing
 | KnotTheory | 0.1.0 | Knot theory and invariants
+| KRLAdapter | 0.1.0 | Knowledge Representation Layer adapter
 | Lithoglyph | 0.1.0 | Lithographic data processing
 | LowLevel | 0.1.0 | Low-level systems programming utilities
 | MacroPower | 0.1.0 | Advanced Julia metaprogramming
@@ -72,6 +73,7 @@ pkg> add SMTLib
 | SoftwareSovereign | 0.1.0 | Software sovereignty analysis
 | TradeUnionist | 0.1.0 | Labour rights data analysis
 | ViableSystems | 0.1.0 | Viable Systems Model (VSM) implementation
+| ViperPkg | 0.1.0 | Julia bindings for the `julia-the-viper` Viper language
 | ZeroProb | 0.1.0 | Zero-probability event analysis
 |===
 

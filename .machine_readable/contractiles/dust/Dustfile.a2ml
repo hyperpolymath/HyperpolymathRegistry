@@ -1,13 +1,5 @@
 # SPDX-License-Identifier: MPL-2.0
-# Dustfile — Cleanup and hygiene contract for julia-professional-registry
-# Author: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-#
-# Paired runner: dust.ncl
-# Verb:          dust
-# Semantics:     What should be cleaned up. Housekeeping, not blockers.
-#
-# This repository: julia-professional-registry is the canonical template.
-# Cleanup items here ensure the template itself remains pristine.
+# Dustfile — Cleanup and Hygiene Contract
 
 @abstract:
 Cleanup and hygiene items for julia-professional-registry. These are maintenance tasks

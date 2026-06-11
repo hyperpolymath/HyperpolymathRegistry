@@ -1,20 +1,5 @@
-# SPDX-License-Identifier: MPL-2.0
-# Bustfile — failure mode contractile for julia-professional-registry
-# Author: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-#
-# Paired runner: bust.ncl
-# Verb:          bust
-# Semantics:     Every declared failure mode must have a working recovery path
-#                that has been exercised. Status moves:
-#                  declared → drilled (probe run) → verified (recovery confirmed)
-#                  or → failing (recovery broken)
-#
-# CLI:
-#   contractile bust check  → list failure modes + recovery status
-#   contractile bust drill  → inject failures, verify recovery paths
-#
-# This repository: julia-professional-registry is the canonical template for RSR compliance.
-# Failure modes here relate to template distribution and substitution.
+// Bustfile.a2ml — meta-repo bust contractile (breakage / rollback)
+// SPDX-License-Identifier: MPL-2.0
 
 @abstract:
 Bustfile for julia-professional-registry. Lists failure modes specific to the template
