@@ -1,13 +1,11 @@
 # SPDX-License-Identifier: MPL-2.0
 name: Scorecards supply-chain security
-
 on:
   branch_protection_rule:
   schedule:
     - cron: '23 4 * * 1'
   push:
     branches: [main]
-
 # Workflow-level permissions are read-only. The job that calls the
 # reusable upgrades to the writes required by ossf/scorecard-action.
 # See the canonical caller block in
@@ -16,7 +14,6 @@ on:
 # the job-level overrides below are necessary, not redundant.
 permissions:
   contents: read
-
 jobs:
   analysis:
     permissions:

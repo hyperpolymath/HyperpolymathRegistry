@@ -5,7 +5,6 @@
 # matrix that produces meaningful SAST results (closing the
 # `scorecard/StaticAnalysis` nominal-SAST finding).
 name: CodeQL Security Analysis
-
 on:
   push:
     branches: [main, master]
@@ -13,14 +12,11 @@ on:
     branches: [main, master]
   schedule:
     - cron: '0 6 * * 1'
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 permissions:
   contents: read
-
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -34,17 +30,14 @@ jobs:
         include:
           - language: actions
             build-mode: none
-
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@c6f931105cb2c34c8f901cc885ba1e2e259cf745 # v3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
-
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@c6f931105cb2c34c8f901cc885ba1e2e259cf745 # v3
         with:
