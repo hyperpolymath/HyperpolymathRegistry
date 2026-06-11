@@ -1,28 +1,37 @@
 // Bustfile.a2ml — meta-repo bust contractile (breakage / rollback)
 // SPDX-License-Identifier: MPL-2.0
 
-Bust {
-    name: "julia-professional-registry"
-    version: "1.0.0"
-    description: "Rollback procedures when something breaks in the meta-repo"
+@abstract:
+Bustfile for julia-professional-registry. Lists failure modes specific to the template
+repository itself, particularly around template distribution, substitution,
+and synchronization across the hyperpolymath estate.
+@end
 
-    scenarios: {
-        "bad-pointer-bump": "git revert <bump-commit> in meta-repo; child repo itself untouched"
-        "submodule-pointer-points-at-missing-sha": "git submodule update --init --checkout <path> resets child to parent-recorded SHA; OR revert the stale bump commit"
-        "submodule-orphan-after-local-only-commit": "roll back locally with git reset to before the stranded commit; fix remote situation before re-attempting"
-        "accidental-private-repo-content-leaked-to-public-submodule": "hard-rotate the leaked secret immediately; git-filter-repo or BFG on the submodule's own history; public re-publication only after rotation complete"
-    }
+## Failure Modes
 
-    escalation-ladder: [
-        "1. revert the meta-repo commit (reversible, low blast radius)",
-        "2. reset the local submodule clone (affects only local workspace)",
-        "3. force-push to main — PROHIBITED without explicit user confirmation (violates branch protection)",
-        "4. registry-level (delete/archive the GitHub repo) — human-only action, never by AI"
-    ]
+### template-substitution-failure
+- class: template_processing
+- description: Template substitution fails when initializing a new repo from this template
+- injection_probe: "cp -r julia-professional-registry test-repo && cd test-repo && sed -i 's/julia-professional-registry/TEST/g' .machine_readable/contractiles/Intentfile.a2ml && grep -q 'TEST' .machine_readable/contractiles/Intentfile.a2ml"
+- recovery_probe: "git -C test-repo diff --quiet .machine_readable/contractiles/Intentfile.a2ml"
+- expected_recovery_time_seconds: 10
+- status: declared
+- notes: Verify that substitution scripts handle all placeholder replacements correctly
 
-    backup-points: [
-        "GitHub serves as the durable backup for every submodule's own history",
-        "Meta-repo history on origin/main is the durable backup for pointer state",
-        "Local backup tags (backup/pre-<operation>-<date>) retained on risky rewrites"
-    ]
-}
+### sync-drift-between-repos
+- class: synchronization
+- description: Drift occurs between julia-professional-registry and other repos after template updates
+- injection_probe: "echo 'template_updated' > /tmp/test_drift_marker"
+- recovery_probe: "test -f /tmp/test_drift_marker && rm /tmp/test_drift_marker"
+- expected_recovery_time_seconds: 60
+- status: declared
+- notes: The estate-wide sync scripts (see scripts/) should prevent this; verify with scripts/verify-sync.sh
+
+### contractile-parse-error
+- class: contractile_format
+- description: A contractile file fails to parse due to syntax errors
+- injection_probe: "echo 'invalid syntax' >> julia-professional-registry/.machine_readable/contractiles/Intentfile.a2ml"
+- recovery_probe: "git checkout julia-professional-registry/.machine_readable/contractiles/Intentfile.a2ml"
+- expected_recovery_time_seconds: 5
+- status: declared
+- notes: All .a2ml files should be valid A2ML; use a2ml-validate runner
