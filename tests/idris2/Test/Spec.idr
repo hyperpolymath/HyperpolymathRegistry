@@ -1,5 +1,5 @@
 -- SPDX-License-Identifier: MPL-2.0
-// Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-- Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 -- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 --
 ||| Minimal Idris2 test harness for the Gossamer ABI test suite.
