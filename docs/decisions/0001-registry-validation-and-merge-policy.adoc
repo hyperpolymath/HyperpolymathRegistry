@@ -1,0 +1,84 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+// Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+= ADR 0001: Canonical registry validation + semver/merge policy
+:toc: preamble
+
+* Status: accepted
+* Date: 2026-07-01
+* Deciders: BDFL (Jonathan D.A. Jewell)
+
+== Context
+
+This repository is a hand-maintained Julia package registry (37 packages).
+Two critical resolution-breaking bugs (tracked as gaps G20/G21: a bad
+`Registry.toml` repo URL, and a package name/UUID mismatch reachable via
+another package's `Deps.toml`) reached `main` before being caught, because
+there was no automated check that a registry change is internally
+consistent. `docs/decisions/` was referenced from `GOVERNANCE.adoc` §
+"Architecture Decision Records (ADRs)" and § "Amendments" from the outset,
+but the directory did not exist until this ADR (gap G29).
+
+== Decision
+
+1. Adopt `RegistryCI.jl` -- the same package `JuliaRegistries/General` uses
+   for its own CI -- as the canonical registry consistency checker, invoked
+   via `RegistryCI.test(path)`. Wrap it in `ci/validate.jl` alongside three
+   belt-and-braces custom checks (Deps.toml name/UUID cross-check against
+   Registry.toml; Registry.toml/Package.toml repo-slug consistency;
+   Compat.toml upper-bound advisory) that are independent of RegistryCI and
+   target the specific bug classes this registry has already hit.
+2. Wire `ci/validate.jl` into `.github/workflows/registry-validate.yml`,
+   triggered on every push/PR with no `paths:` filter (per the estate CI
+   rule that a required check must always trigger, or it strands PRs as
+   permanently "Expected").
+3. Adopt the semver/compat/merge policy recorded in
+   `docs/REGISTRY-POLICY.adoc`: mandatory upper-bounded `Compat.toml`,
+   name/UUID immutability, and a concrete auto-merge-vs-BDFL-review table.
+4. Repair the existing Idris2 registry test suite
+   (`tests/idris2/ValidateTest.idr`), which asserted a `README.adoc` that no
+   longer exists (the README was converted to Markdown in commit `e0903a9`).
+   That suite remains unwired to any GitHub Actions workflow -- see
+   "Consequences" below.
+
+== Alternatives considered
+
+* *Hand-rolled TOML validator only, no RegistryCI.* Rejected as the primary
+  mechanism: RegistryCI is the canonical tool the Julia ecosystem itself
+  trusts for this job (round-trips Deps.toml/Compat.toml through Pkg's own
+  compression code, checks case-insensitive path collisions, etc.) --
+  reinventing it by hand would be strictly worse and a maintenance burden.
+  Kept as a *supplementary* layer instead, because RegistryCI alone cannot
+  express this registry's estate-specific rules (repo-slug ownership,
+  upper-bound advisory).
+* *`RegistryCI.test` with `registry_deps=General` as the only mode.*
+  Rejected as the *default* CI mode: cloning `JuliaRegistries/General` is a
+  large, slow, network-dependent operation, unsuitable for gating every push.
+  Kept as an opt-in (`JULIA_REGISTRY_VALIDATE_GENERAL_DEPS=1`), running
+  `continue-on-error: true` in CI.
+
+== Consequences
+
+* CI now fails fast on the G20/G21 bug classes recurring.
+* The registry-local RegistryCI run (no `registry_deps`) will always show
+  "failures" for any package that depends on a real `JuliaRegistries/General`
+  package (HTTP.jl, JSON.jl, JSON3.jl, Zygote.jl, ...) -- this is expected,
+  documented RegistryCI behaviour for a non-General registry, not a defect.
+  `ci/validate.jl` classifies and explains this explicitly rather than
+  hiding it, so CI logs stay honest.
+* The Idris2 suite fix (`README.adoc` -> `README.md`) is a content repair
+  only. That suite is still not invoked by any `.github/workflows/*.yml` --
+  wiring it would require adding an Idris2 toolchain bootstrap (the estate
+  pattern, seen in `proven-tests-and-benches`, builds Idris2 from source via
+  `scripts/install-idris2.sh` and runs it `workflow_dispatch`-only to avoid
+  spending CI minutes on a slow build). That is left as a follow-up, tracked
+  separately from this ADR's Julia-registry-validation scope.
+* `RegistryCI.AutoMerge` (bot-driven PR automation) is explicitly out of
+  scope for this decision -- it needs a GitHub API token and a decision about
+  which policy-doc rows should be bot-executed versus human-clicked. See
+  `docs/REGISTRY-POLICY.adoc` § "What this policy does NOT (yet) automate".
+
+'''
+
+Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath). Licensed under
+CC-BY-SA-4.0.

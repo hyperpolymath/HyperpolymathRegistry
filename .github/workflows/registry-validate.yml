@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Canonical registry validation (RegistryCI.jl) + belt-and-braces custom
+# checks (name/UUID consistency, repo slug, Compat.toml upper bounds).
+# See ci/validate.jl and docs/REGISTRY-POLICY.adoc.
+#
+# NOTE: this is intended to be a *required* status check, so it deliberately
+# has no `on.push.paths` / `on.pull_request.paths` filter -- a path-filtered
+# required check that never triggers on an unrelated PR gets stuck as
+# permanently "Expected" and strands the PR in a blocked mergeable_state.
+# Always trigger; the job itself is cheap (single-package registry, no build).
+name: Registry Validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+        with:
+          version: '1.10'
+
+      - name: Install RegistryCI in a throwaway depot
+        env:
+          JULIA_DEPOT_PATH: ${{ runner.temp }}/registry-validate-depot
+        run: |
+          julia -e 'using Pkg; Pkg.add("RegistryCI")'
+
+      - name: Run registry validation (registry-local checks; RegistryCI without General deps)
+        env:
+          JULIA_DEPOT_PATH: ${{ runner.temp }}/registry-validate-depot
+        run: |
+          julia ci/validate.jl "${{ github.workspace }}"
+
+      - name: Run full RegistryCI check against General (network, best-effort)
+        env:
+          JULIA_DEPOT_PATH: ${{ runner.temp }}/registry-validate-depot
+          JULIA_REGISTRY_VALIDATE_GENERAL_DEPS: '1'
+        run: |
+          julia ci/validate.jl "${{ github.workspace }}"
+        continue-on-error: true
