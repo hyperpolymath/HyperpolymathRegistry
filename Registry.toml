@@ -1,6 +1,6 @@
 name = "JuliaProfessionalRegistry"
 uuid = "2ba92a00-ca78-4729-9a29-51b4a830c8fa"
-repo = "https://github.com/hyperpolymath/HyperpolymathRegistry.git"
+repo = "https://github.com/hyperpolymath/julia-professional-registry.git"
 
 description = """
 Hyperpolymath Julia package registry. Contains all hyperpolymath Julia packages.
