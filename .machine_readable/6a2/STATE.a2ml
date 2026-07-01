@@ -5,10 +5,20 @@
 [metadata]
 project = "HyperpolymathRegistry"
 version = "0.1.0"
-last-updated = "2026-03-15"
+last-updated = "2026-07-01"
 status = "active"
+
+# NOTE: the `project`/`name` fields still carry the pre-rename identity
+# ("HyperpolymathRegistry"). The functional registry name is
+# "JuliaProfessionalRegistry" (Registry.toml) and the repo slug is
+# "julia-professional-registry"; reconciling the three names is a CLADE-level
+# identity rename that must be coordinated with gv-clade-index (tracked as G22),
+# so the name is left consistent-but-stale here rather than swept in isolation.
 
 [project-context]
 name = "HyperpolymathRegistry"
-completion-percentage = 0
-phase = "In development"
+# Operational: 37 packages registered, ci/validate.jl + registry-validate.yml
+# gate green. Residuals: AutoMerge automation (G23) and identity
+# canonicalization (G22). The previous 0% / "In development" was stale.
+completion-percentage = 85
+phase = "operational"
