@@ -15,8 +15,8 @@ Clone, build, test, contribute.
 
 [source,bash]
 ----
-git clone https://github.com/hyperpolymath/HyperpolymathRegistry
-cd HyperpolymathRegistry
+git clone https://github.com/hyperpolymath/julia-professional-registry
+cd julia-professional-registry
 just doctor    # verify toolchain
 just heal      # auto-install missing tools
 ----

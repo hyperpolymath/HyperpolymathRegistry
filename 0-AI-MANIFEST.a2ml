@@ -1,9 +1,9 @@
 ;; SPDX-License-Identifier: MPL-2.0
 ;; 0-AI-MANIFEST.a2ml — AI Agent Entry Point
-;; Repository: hyperpolymath/HyperpolymathRegistry
+;; Repository: hyperpolymath/julia-professional-registry
 
 @abstract:
-AI manifest for HyperpolymathRegistry. Read this file first before any other work.
+AI manifest for JuliaProfessionalRegistry. Read this file first before any other work.
 @end
 
 ;; === CANONICAL LOCATIONS ===
