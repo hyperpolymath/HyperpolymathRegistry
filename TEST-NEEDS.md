@@ -6,7 +6,7 @@ Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 
 ## CRG Grade: C — ACHIEVED 2026-04-04
 
-**Repository:** HyperpolymathRegistry  
+**Repository:** JuliaProfessionalRegistry  
 **Grade:** C  
 **Last Updated:** 2026-04-04
 
@@ -78,7 +78,7 @@ deno test --allow-read tests/validate.test.ts
 ## Registry Structure
 
 ```
-HyperpolymathRegistry/
+JuliaProfessionalRegistry/
 ├── Registry.toml              # Registry manifest
 ├── README.adoc                # User documentation
 ├── A/
@@ -114,7 +114,7 @@ Users can add this registry to their Julia environment:
 
 ```julia
 using Pkg
-Pkg.Registry.add(RegistrySpec(url="https://github.com/hyperpolymath/HyperpolymathRegistry"))
+Pkg.Registry.add(RegistrySpec(url="https://github.com/hyperpolymath/julia-professional-registry"))
 ```
 
 Then install packages:

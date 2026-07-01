@@ -1,7 +1,7 @@
-# ⚓ ANCHOR: HyperpolymathRegistry
-# This is the canonical authority for the HyperpolymathRegistry repository.
+# ⚓ ANCHOR: JuliaProfessionalRegistry
+# This is the canonical authority for the JuliaProfessionalRegistry repository.
 
-id: "org.hyperpolymath.HyperpolymathRegistry"
+id: "org.hyperpolymath.JuliaProfessionalRegistry"
 version: "1.0.0"
 clade: "unknown"
 status: "active"

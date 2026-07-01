@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: MPL-2.0
-# stapeln.toml — Layer-based container build for HyperpolymathRegistry
+# stapeln.toml — Layer-based container build for JuliaProfessionalRegistry
 #
 # stapeln builds containers as composable layers (German: "to stack").
 # Each layer is independently cacheable, verifiable, and signable.
 
 [metadata]
-name = "HyperpolymathRegistry"
+name = "JuliaProfessionalRegistry"
 version = "0.1.0"
-description = "HyperpolymathRegistry"
+description = "JuliaProfessionalRegistry"
 author = "Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>"
 license = "MPL-2.0"
 registry = "ghcr.io/hyperpolymath"
@@ -32,7 +32,7 @@ packages = ["julia"]
 cache = true
 
 [layers.build]
-description = "HyperpolymathRegistry build"
+description = "JuliaProfessionalRegistry build"
 extends = "toolchain"
 commands = ["julia --project=. -e \"using Pkg; Pkg.instantiate()\""]
 
@@ -43,7 +43,7 @@ packages = ["ca-certificates", "curl"]
 copy-from = [
     { layer = "build", src = "/app/", dst = "/app/" },
 ]
-entrypoint = ["/app/bin/HyperpolymathRegistry"]
+entrypoint = ["/app/bin/JuliaProfessionalRegistry"]
 user = "nonroot"
 
 # ── Security ───────────────────────────────────────────────────

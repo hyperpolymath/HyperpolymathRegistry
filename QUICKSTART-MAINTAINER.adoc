@@ -33,7 +33,7 @@ Key workflows:
 
 [source,bash]
 ----
-podman build -f Containerfile -t HyperpolymathRegistry:latest .
+podman build -f Containerfile -t JuliaProfessionalRegistry:latest .
 ----
 
 == Mirrors

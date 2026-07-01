@@ -2,7 +2,7 @@
 <!-- Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk> -->
 <!-- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk> -->
 
-# TOPOLOGY.md — HyperpolymathRegistry
+# TOPOLOGY.md — JuliaProfessionalRegistry
 
 ## Purpose
 
@@ -11,7 +11,7 @@ Custom Julia package registry aggregating all hyperpolymath Julia packages. Prov
 ## Module Map
 
 ```
-HyperpolymathRegistry/
+JuliaProfessionalRegistry/
 ├── Registries.toml            # Registry configuration
 ├── A/
 │   └── ... (packages starting with A)

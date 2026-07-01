@@ -1,5 +1,5 @@
 ; SPDX-License-Identifier: MPL-2.0
-; TRUST.contractile — Trust boundaries for HyperpolymathRegistry
+; TRUST.contractile — Trust boundaries for JuliaProfessionalRegistry
 ; Defines what LLM/SLM agents are trusted to do without asking.
 ;
 ; Part of the contractile family: MUST, TRUST, DUST, INTENT, ADJUST
@@ -35,7 +35,7 @@
 
 (trust-contractile
   (version "1.0.0")
-  (repo "HyperpolymathRegistry")
+  (repo "JuliaProfessionalRegistry")
 
   (trust-level "maximal")  ; maximal | standard | restricted | minimal
 
