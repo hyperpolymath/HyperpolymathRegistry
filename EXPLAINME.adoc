@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-= HyperpolymathRegistry — Show Me The Receipts
+= JuliaProfessionalRegistry — Show Me The Receipts
 :toc:
 :toclevels: 3
 :icons: font
@@ -15,7 +15,7 @@ directory to its role.
 ____
 Custom Julia package registry for all hyperpolymath Julia packages.
 Add the registry with:
-`Pkg.Registry.add(RegistrySpec(url="https://github.com/hyperpolymath/HyperpolymathRegistry"))`
+`Pkg.Registry.add(RegistrySpec(url="https://github.com/hyperpolymath/julia-professional-registry"))`
 ____
 
 *How it works.* Julia's `Pkg` system discovers packages through local registry
@@ -87,12 +87,12 @@ secret scanning and EditorConfig enforcement.
 | Consumer | How it uses this repo
 
 | `developer-ecosystem` (julia-ecosystem)
-| The Julia ecosystem segment uses HyperpolymathRegistry as the canonical
+| The Julia ecosystem segment uses JuliaProfessionalRegistry as the canonical
   source for all hyperpolymath Julia packages; the Justfile recipes in
   `developer-ecosystem/julia-ecosystem/` include `Pkg.Registry.add` as a
   setup step.
 
-| `HyperpolymathRegistry` consumers (all Julia projects)
+| `JuliaProfessionalRegistry` consumers (all Julia projects)
 | Any hyperpolymath Julia package (Axiom, ProvenCrypto, SMTLib, ViableSystems,
   ZeroProb, etc.) that lists `[compat]` entries relies on this registry for
   resolution. Adding a new version to a package requires a corresponding

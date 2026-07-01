@@ -6,8 +6,8 @@
 uuid = "2efe00c2-6fc0-527c-8c6b-8ab96d2b6077"
 primary-forge = "github"
 primary-owner = "hyperpolymath"
-canonical-name = "HyperpolymathRegistry"
-prefixed-name = "dx-HyperpolymathRegistry"
+canonical-name = "JuliaProfessionalRegistry"
+prefixed-name = "dx-JuliaProfessionalRegistry"
 
 [clade]
 primary = "dx"
@@ -16,9 +16,9 @@ assigned = "2026-03-16"
 rationale = ""
 
 [forges]
-github = "hyperpolymath/HyperpolymathRegistry"
-gitlab = "hyperpolymath/HyperpolymathRegistry"
-bitbucket = "hyperpolymath/HyperpolymathRegistry"
+github = "hyperpolymath/julia-professional-registry"
+gitlab = "hyperpolymath/julia-professional-registry"
+bitbucket = "hyperpolymath/julia-professional-registry"
 
 [lineage]
 type = "standalone"
@@ -35,7 +35,7 @@ born = "2026-03-16"
 phase = "active"
 since = "2026-03-16"
 present = true
-aliases = []
+aliases = ["HyperpolymathRegistry"]
 merged-into = ""
 superseded-by = ""
 successors = []
