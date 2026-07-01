@@ -67,9 +67,13 @@ allSuites =
         , assertTrue "[packages] section" (isInfixOf "[packages]" content)
         ]
 
-  , test "unit: README.adoc exists" $ do
-      ok <- fileExists "README.adoc"
-      assertTrue "README.adoc" ok
+  , test "unit: README.md exists" $ do
+      -- Was "README.adoc" until commit e0903a9 (docs(readme): convert
+      -- README.adoc -> Markdown, so it renders on Glama/profile/community
+      -- health). Updated here to match; this assertion was silently failing
+      -- against the pre-e0903a9 filename until this fix.
+      ok <- fileExists "README.md"
+      assertTrue "README.md" ok
 
   , test "unit: A-Z package directories exist" $ do
       a <- dirOrFileExists "A"
@@ -105,7 +109,7 @@ allSuites =
       assertTrue "name and path tokens present" (has_name && has_path)
 
   , test "smoke: README lists packages with Version" $ do
-      content <- readFileToString "README.adoc"
+      content <- readFileToString "README.md"
       let has_pkg = isInfixOf "Package" content
       let has_ver = isInfixOf "Version" content
       assertTrue "README mentions Package + Version" (has_pkg && has_ver)
@@ -148,7 +152,7 @@ allSuites =
       assertTrue "AcceleratorGate referenced and exists" (mentions_ag && ag_dir)
 
   , test "e2e: README references at least one package from Registry" $ do
-      readme <- readFileToString "README.adoc"
+      readme <- readFileToString "README.md"
       registry <- readFileToString "Registry.toml"
       -- AcceleratorGate is a stable canonical example from the registry.
       let pkg_in_both = isInfixOf "AcceleratorGate" readme && isInfixOf "AcceleratorGate" registry

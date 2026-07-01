@@ -1,0 +1,133 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// Owner: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+// Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+= Registry Policy: Semver, Compat, and Merge Rules
+:toc: preamble
+
+This document is the concrete, enforceable companion to
+link:../GOVERNANCE.adoc[GOVERNANCE.adoc]. GOVERNANCE.adoc says *who* decides;
+this document says *what* is and is not acceptable in a registry change, and
+which of those rules are machine-checked by
+link:../.github/workflows/registry-validate.yml[`registry-validate.yml`] /
+link:../ci/validate.jl[`ci/validate.jl`].
+
+== Scope
+
+Applies to every change under a package directory (`<Letter>/<PackageName>/`)
+and to `Registry.toml` itself, across all 37 packages currently registered.
+
+== Semver bump rules
+
+* A package's `Versions.toml` entries are additive-only: once a version is
+  published, its `git-tree-sha1` is immutable. Correcting a mistake means
+  publishing a new version, never editing an existing entry in place.
+* *Patch* (`x.y.Z`): bug fixes, no public API change, no new required deps.
+* *Minor* (`x.Y.0`): backwards-compatible additions -- new exported names,
+  new optional dependencies, widened (never narrowed) `Compat.toml` ranges.
+* *Major* (`X.0.0`): anything that can break a downstream consumer --
+  removing/renaming an exported name, changing a function signature,
+  narrowing a `Compat.toml` range, dropping support for a supported Julia
+  version, or a behavioural change to already-documented semantics.
+* Registering *any* version requires the package's own `Package.toml`
+  `name`/`uuid` to match the binding already recorded in `Registry.toml` for
+  that package -- this is machine-checked (Layer 2a in `ci/validate.jl`; also
+  covered by `RegistryCI.test`). This is the exact bug class fixed in PR #40
+  (G20/G21): a stale or copy-pasted UUID in a dependent package's `Deps.toml`.
+
+== Mandatory upper-bounded compat
+
+* Every `Compat.toml` entry MUST specify an upper bound. Julia's caret-style
+  entries (`"1.2"`, `"0.3.4"`) are fine as-is -- they carry an implicit upper
+  bound under semver rules. Bare `">=1.2"`, `">1"`, or `"*"` are NOT fine:
+  they permit an unbounded range of future (potentially breaking) releases
+  to satisfy the registry's own resolver.
+* `ci/validate.jl` Layer 2c flags unbounded entries as a **warning**, not a
+  hard failure -- this policy is being rolled out and existing packages may
+  need a follow-up PR to tighten their ranges. New packages and new versions
+  SHOULD ship with upper-bounded compat from the start; reviewers should
+  request changes on a warning rather than wave it through by default.
+* `julia = "..."` compat is required on every package (already enforced by
+  `RegistryCI.test`).
+
+== Name / UUID immutability
+
+* A package's UUID, once registered, is permanent. It is the join key every
+  other package's `Deps.toml` uses to reference it; changing it retroactively
+  breaks every dependent package silently (this is exactly what G20/G21
+  fixed).
+* A package's *name* is effectively permanent too: renaming requires a new
+  UUID (a "new package" in Pkg's model) plus a deprecation trail in the old
+  entry, not an in-place rename of `Registry.toml`.
+* Registry.toml's own `repo` field, and every package's `Package.toml` `repo`
+  field, must resolve to a `hyperpolymath/<name>` GitHub slug (`ci/validate.jl`
+  Layer 2b). This is a hard failure, not a warning -- a foreign owner in that
+  field is either a typo or a sign the package was copied from a fork without
+  updating provenance.
+
+== What may auto-merge vs what needs BDFL review
+
+Mirrors GOVERNANCE.adoc's "Package registration decisions" hierarchy, made
+concrete for CI purposes:
+
+[cols="3,2,4",options="header"]
+|===
+| Change | May auto-merge? | Conditions
+
+| New PATCH/MINOR version of an already-registered package
+| Yes, once CI is green
+| `registry-validate.yml` passes with 0 errors; no `Registry.toml` UUID/name
+  edits; no `repo` field changes; upstream tag exists matching the version.
+
+| New MAJOR version of an already-registered package
+| No -- BDFL review
+| Same CI gate, plus a human check that the breaking change is intentional
+  and documented (e.g. in the upstream package's own CHANGELOG).
+
+| Brand-new package registration
+| No -- BDFL review
+| Must meet the quality bar in
+  `.github/ISSUE_TEMPLATE/package_registration.md`: SPDX headers, REUSE
+  `LICENSES/`, OpenSSF Scorecard baseline, no banned-language files, upper-
+  bounded `Compat.toml` from day one.
+
+| Any edit to an existing package's UUID or name binding in `Registry.toml`
+| Never
+| Name/UUID immutability (above). Treat as a removal + new registration if a
+  genuine rename is unavoidable, with an ADR under `docs/decisions/`.
+
+| Removal of a package from `Registry.toml`
+| No -- BDFL review + ADR
+| Per GOVERNANCE.adoc "Removals or renames require BDFL approval and an ADR."
+
+| Any change to `Registry.toml`'s own top-level `repo`/`name`/`uuid` fields
+| No -- BDFL review
+| These are registry-identity fields, not package fields; changing them
+  affects every consumer of the whole registry.
+|===
+
+"CI is green" always means: `registry-validate.yml`'s registry-local checks
+(RegistryCI + Layer 2a/2b) report 0 errors. The optional
+`JULIA_REGISTRY_VALIDATE_GENERAL_DEPS=1` job (cross-checking deps against the
+real General registry) runs `continue-on-error: true` in CI -- see
+"Residuals" below -- so it informs review but does not gate merge on its own.
+
+== What this policy does NOT (yet) automate
+
+* **RegistryCI.AutoMerge** (the same bot logic JuliaRegistries/General runs
+  for its own pull requests) is not wired up here. That needs a GitHub API
+  token with write access to label/merge/comment on PRs, plus a decision
+  about which of the "may auto-merge" rows above should actually be
+  auto-merged by a bot versus merely CI-gated for a human to click merge.
+  Tracked as a follow-up; see the residuals note in the validation script's
+  companion PR/report.
+
+== Licence note
+
+This policy document does not alter licensing. It does not touch `NOTICE`,
+`LICENSES/`, or any SPDX header -- those remain owner-only, manual changes per
+the estate license policy.
+
+'''
+
+Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath). Licensed under
+CC-BY-SA-4.0.

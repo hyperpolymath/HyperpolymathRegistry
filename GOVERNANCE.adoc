@@ -34,6 +34,8 @@ Registry-specific decisions follow this hierarchy:
 * *New package registrations* require the BDFL's review. The package must meet the registry's quality bar (SPDX headers, REUSE-compliant `LICENSES/`, OpenSSF Scorecard baseline, no banned-language files).
 * *Removals or renames* require BDFL approval and an ADR.
 
+See link:docs/REGISTRY-POLICY.adoc[docs/REGISTRY-POLICY.adoc] for the concrete, CI-enforced version of this hierarchy: semver bump rules, mandatory upper-bounded `Compat.toml`, name/UUID immutability, and exactly which changes may auto-merge.
+
 === Proposing changes
 
 * Contributors can propose changes by opening issues or pull requests.
