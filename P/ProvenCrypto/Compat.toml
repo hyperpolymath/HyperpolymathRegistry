@@ -1,5 +1,0 @@
-["0.1.2"]
-AcceleratorGate = "0.1"
-Dates = "1"
-KernelAbstractions = "0.9"
-julia = "1"
