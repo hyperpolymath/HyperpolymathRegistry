@@ -46,7 +46,7 @@ to new repositories.
 - description: No references to julia-professional-registry in generic template files
 - run: test -z "$(grep -r 'julia-professional-registry' machine-readable-design/ 2>/dev/null)"
 - severity: warning
-- notes: Generic templates should use {{PROJECT_NAME}} or similar placeholders
+- notes: Generic templates should use JuliaProfessionalRegistry or similar placeholders
 
 ### version-sync-checked
 - description: Version in canonical-directory-structure matches .machine_readable/contractiles
