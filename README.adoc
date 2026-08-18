@@ -57,7 +57,7 @@ pkg> add SMTLib
 | HackenbushGames | 0.1.0 | Combinatorial game theory (Hackenbush)
 | HardwareResilience | 0.1.0 | Hardware fault tolerance analysis
 | Hyperpolymath | 0.1.0 | Hyperpolymath ecosystem metapackage
-| InvestigativeJournalist | 0.1.0 | Data journalism toolkit
+| InvestigativeJournalism | 0.1.0 | Data journalism toolkit
 | JuliaForChildren | 0.1.0 | Educational Julia for young learners
 | JuliaPackageSpitter | 0.1.0 | Julia package quality auditing
 | KnotTheory | 0.1.0 | Knot theory and invariants
@@ -76,7 +76,7 @@ pkg> add SMTLib
 | Skein | 0.1.0 | Skein hash function
 | SMTLib | 0.1.0 | SMT-LIB solver interface
 | SoftwareSovereign | 0.1.0 | Software sovereignty analysis
-| TradeUnionist | 0.1.0 | Labour rights data analysis
+| TradeUnionism | 0.1.0 | Labour rights data analysis
 | ViableSystems | 0.1.0 | Viable Systems Model (VSM) implementation
 | ViperPkg | 0.1.0 | Julia bindings for the `julia-the-viper` Viper language
 | ZeroProb | 0.1.0 | Zero-probability event analysis
